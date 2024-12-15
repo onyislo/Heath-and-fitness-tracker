@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <h1>Welcome, {{ user.username }}</h1>
+    <h2>Today's Summary</h2>
+    <p>Total Calories Burned: {{ total_calories_burned }}</p>
+    <p>Total Calories Consumed: {{ total_calories_consumed }}</p>
+
+    <h3>Workouts</h3>
+    <ul>
+        {% for workout in workouts %}
+        <li>{{ workout.activity }}: {{ workout.duration }} mins, {{ workout.calories_burned }} kcal</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'log_workout' %}">Log a Workout</a>
+
+    <h3>Meals</h3>
+    <ul>
+        {% for meal in meals %}
+        <li>{{ meal.meal_name }}: {{ meal.calories }} kcal</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'log_meal' %}">Log a Meal</a>
+</body>
+</html>
